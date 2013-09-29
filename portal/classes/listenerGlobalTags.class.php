@@ -1,6 +1,8 @@
 <?php namespace psm;
-if(!defined('PORTAL_INDEX_FILE') || \PORTAL_INDEX_FILE!==TRUE){if(headers_sent()){echo '<header><meta http-equiv="refresh" content="0;url=../"></header>';}else{header('HTTP/1.0 301 Moved Permanently'); header('Location: ../');} die("<font size=+2>Access Denied!!</font>");}
-class listenerGlobalTags implements listener {
+if(!defined('psm\\INDEX_FILE') || \psm\INDEX_FILE!==TRUE) {if(headers_sent()) {echo '<header><meta http-equiv="refresh" content="0;url=../"></header>';}
+	else {header('HTTP/1.0 301 Moved Permanently'); header('Location: ../');} die('<font size="+2">Access Denied!!</font>');}
+global $ClassCount; $ClassCount++;
+class listenerGlobalTags implements Listener {
 
 	private $paths = array();
 
@@ -16,7 +18,7 @@ class listenerGlobalTags implements listener {
 	public static function renderPathTags(&$data) {
 		$data =	preg_replace_callback(
 			'/\{path=(.*?)\}/s',
-			array('\psm\listenerGlobalTags', '_pathCallback'),
+			array('\\psm\\listenerGlobalTags', '_pathCallback'),
 			$data
 		);
 	}

@@ -1,12 +1,14 @@
 <?php namespace psm;
-if(!defined('PORTAL_INDEX_FILE') || \PORTAL_INDEX_FILE!==TRUE){if(headers_sent()){echo '<header><meta http-equiv="refresh" content="0;url=../"></header>';}else{header('HTTP/1.0 301 Moved Permanently'); header('Location: ../');} die("<font size=+2>Access Denied!!</font>");}
+if(!defined('psm\\INDEX_FILE') || \psm\INDEX_FILE!==TRUE) {if(headers_sent()) {echo '<header><meta http-equiv="refresh" content="0;url=../"></header>';}
+	else {header('HTTP/1.0 301 Moved Permanently'); header('Location: ../');} die('<font size="+2">Access Denied!!</font>');}
+global $ClassCount; $ClassCount++;
 class listenerGroup {
 
 	private $listeners = array();
 
 
-	public function registerListener(listener $listener) {
-		Utils::appendArray($this->listeners, $listener);
+	public function registerListener(Listener $listener) {
+		\psm\Utils\Utils::appendArray($this->listeners, $listener);
 	}
 
 
